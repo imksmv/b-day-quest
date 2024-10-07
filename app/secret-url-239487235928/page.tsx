@@ -9,11 +9,20 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useConfetti } from "@/hooks/useConfetti";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const SecretUrl = () => {
   const [enteredKey, setEnteredKey] = useState("");
+  const [error, setError] = useState("");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const router = useRouter();
+
+  const handleSound = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
 
   useConfetti();
 
@@ -24,6 +33,9 @@ const SecretUrl = () => {
 
     if (enteredKey === process.env.NEXT_PUBLIC_CONTORL_PANEL_PASSKEY_NUMBER_2) {
       router.push("/secret-image-1243145232");
+    } else {
+      setError("Nope!");
+      handleSound();
     }
   };
 
@@ -67,6 +79,12 @@ const SecretUrl = () => {
           <span className="absolute -bottom-24 left-96 rotate-[158deg]">
             5839
           </span>
+
+          {error && (
+            <p className="absolute -bottom-10 right-56 rotate-[-40deg] bg-destructive text-destructive-foreground">
+              {error}
+            </p>
+          )}
         </ul>
       </div>
 
@@ -92,6 +110,7 @@ const SecretUrl = () => {
           Give me my gift!
         </Button>
       </div>
+      <audio ref={audioRef} src="/error.mp3" preload="auto" />
     </div>
   );
 };

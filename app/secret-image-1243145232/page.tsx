@@ -5,14 +5,11 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
 const SecretImage = () => {
-  // Explicitly type the ref as HTMLAudioElement
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleAnimationStart = () => {
     if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error("Error playing audio:", error);
-      });
+      audioRef.current.play();
     }
   };
 

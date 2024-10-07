@@ -9,14 +9,22 @@ import {
 } from "@/components/ui/input-otp";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
   const [enteredKey, setEnteredKey] = useState("");
   const [error, setError] = useState("");
   const [isImage, setIsImage] = useState(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const router = useRouter();
+
+  const handleSound = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
 
   const validatePasskey = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -29,6 +37,7 @@ export default function Home() {
     } else {
       setIsImage(true);
       setError("Really? Come on, bro... it's ez.");
+      handleSound();
     }
   };
 
@@ -79,6 +88,7 @@ export default function Home() {
           />
         )}
       </div>
+      <audio ref={audioRef} src="/error.mp3" preload="auto" />
     </div>
   );
 }
