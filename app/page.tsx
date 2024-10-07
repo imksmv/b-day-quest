@@ -1,53 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-function encryptPasskey(passkey: string) {
-  return btoa(passkey);
-}
-
-function decryptPasskey(passkey: string) {
-  return atob(passkey);
-}
 
 export default function Home() {
   const [enteredKey, setEnteredKey] = useState("");
   const [error, setError] = useState("");
-
-  const router = useRouter();
-
-  const encryptedPasskey = localStorage.getItem("accessKey");
-
   useEffect(() => {
-    const encryptedKey = encryptedPasskey && decryptPasskey(encryptedPasskey);
-
-    if (encryptedKey === process.env.NEXT_PUBLIC_CONTORL_PANEL_PASSKEY) {
-      router.push("/secret-url-239487235928");
-    } else {
-    }
-  }, [encryptedPasskey, router]);
-
-  const validatePasskey = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-
-    if (enteredKey === process.env.NEXT_PUBLIC_CONTORL_PANEL_PASSKEY) {
-      const encryptedPasskey = encryptPasskey(enteredKey);
-
-      localStorage.setItem("accessKey", encryptedPasskey);
-    } else {
-      setError("Are you stoooopid?. Come on bro, it is ez...");
-    }
-  };
+    setError("");
+  }, []);
 
   return (
     <div className="flex items-center h-full justify-center">
@@ -81,7 +48,7 @@ export default function Home() {
           </InputOTP>
         </div>
 
-        <Button onClick={(e) => validatePasskey(e)}>Decrypt!</Button>
+        {/* <Button onClick={(e) => validatePasskey(e)}>Decrypt!</Button> */}
       </div>
     </div>
   );
