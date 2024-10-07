@@ -10,11 +10,11 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export function encryptPasskey(passkey: string) {
+function encryptPasskey(passkey: string) {
   return btoa(passkey);
 }
 
-export function decryptPasskey(passkey: string) {
+function decryptPasskey(passkey: string) {
   return atob(passkey);
 }
 
@@ -30,7 +30,7 @@ export default function Home() {
     const encryptedKey = encryptedPasskey && decryptPasskey(encryptedPasskey);
 
     if (encryptedKey === process.env.NEXT_PUBLIC_CONTORL_PANEL_PASSKEY) {
-      router.push("/control-panel");
+      router.push("/secret-url-239487235928");
     } else {
     }
   }, [encryptedPasskey, router]);
