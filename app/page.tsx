@@ -65,7 +65,7 @@ export default function Home() {
         </div>
 
         <Button className="w-full" onClick={(e) => validatePasskey(e)}>
-          Let&apos;s go! 🚀
+          Let's begin! 😈
         </Button>
 
         {isImage && (
