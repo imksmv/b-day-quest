@@ -28,7 +28,7 @@ export default function Home() {
       router.push("/secret-url-239487235928");
     } else {
       setIsImage(true);
-      setError("Are you stoooopid? Come on, bro... it is ez.");
+      setError("Really? Come on, bro... it's ez.");
     }
   };
 
@@ -65,13 +65,13 @@ export default function Home() {
         </div>
 
         <Button className="w-full" onClick={(e) => validatePasskey(e)}>
-          Let's begin! 😈
+          Let&apos;s gooo! 🚀
         </Button>
 
         {isImage && (
           <Image
             priority
-            className="h-[30rem] w-[30rem] object-cover absolute -top-10"
+            className="h-[30rem] w-[30rem] object-cover absolute -top-10 -z-10"
             src="/image.png"
             alt="Image"
             width={500}
